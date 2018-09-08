@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TinyApp</title>
+  <% include partials/_header %>
+</head>
+<body>
+  <a href = '/urls/new'> "New Link"
+  </a>
+  <ul>
+  <%
+    if(user){
+      for (var key in urls) {
+          var databaseInsidevalue = urls[key];
+          if(databaseInsidevalue.user_id === user['id']){
+  %>
+  <li>
+      <%= (key + ": " + urls[key].longURL) %>
+      <form method="POST" action="/urls/<%=key%>/delete">
+        <button type="Submit">Delete</button>
+      </form>
+      <form method="GET" action="/urls/<%=key%>">
+        <button type="Submit">Edit</button>
+      </form>
+  </li>
+  <% }
+  }
+  } else{%>
+  <h2>No URLS</h2>
+  <%
+}%>
+    </ul>
+</body>
+</html>
+

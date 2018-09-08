@@ -1,0 +1,18 @@
+<% if(user) {%>
+<form action = "/logout" method = "GET">
+  <label>
+    <h2> Welcome to TinyApp!</h2>
+    <%= user.email%> <label>
+  </label>
+<Button type="Submit" value="Logout">LogOut</Button>
+</form>
+
+<% } else {%>
+<br>
+<a href="/register">Register</a>
+<br>
+<a href="/login">Login</a>
+<% } %>
+</form>
+<br>
+<br>

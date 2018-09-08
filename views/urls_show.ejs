@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TinyApp</title>
+ <% include partials/_header %>
+</head>
+  <body>
+  <% if(shortURL){ %>
+
+  ShortURL: <%= shortURL %>
+
+  <form method="POST" action="/urls/<%=shortURL%>">
+    <input type="text" name="longURL" value="<%= longURL%>">
+    <input type="submit" value="Update">
+  </form>
+
+  <% }else{  %>
+
+  <h2> The Short URL doesn't exist, please correct Short url</h2>
+  <% } %>
+
+  </body>
+</html>
