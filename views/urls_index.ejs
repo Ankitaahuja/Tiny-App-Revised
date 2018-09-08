@@ -5,15 +5,14 @@
   <% include partials/_header %>
 </head>
 <body>
-  <a href = '/urls/new'> "New Link"
-  </a>
+  <h3><a href = '/urls/new'> Click Here to create a new Tiny Link</a></h3>
   <ul>
-  <%
-    if(user){
-      for (var key in urls) {
-          var databaseInsidevalue = urls[key];
-          if(databaseInsidevalue.user_id === user['id']){
-  %>
+  
+      <%  if(user){ %>
+        <%  for (var key in urls) { %>
+            <%  var databaseInsidevalue = urls[key]; %>
+               <% if(databaseInsidevalue.user_id === user['id']){ %>
+ 
   <li>
       <%= (key + ": " + urls[key].longURL) %>
       <form method="POST" action="/urls/<%=key%>/delete">

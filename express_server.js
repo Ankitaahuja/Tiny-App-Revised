@@ -1,11 +1,11 @@
 
-let express = require("express");
-let bcrypt = require('bcrypt');
-let cookieSession = require('cookie-session');
-let bodyParser = require("body-parser");
+const express = require("express");
+const bcrypt = require('bcrypt');
+const cookieSession = require('cookie-session');
+const bodyParser = require("body-parser");
 
-let app = express();
-let PORT = 8080; // default port 8080
+const app = express();
+const PORT = 8080; // default port 8080
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieSession({
@@ -94,27 +94,30 @@ app.get("/urls/new", (req, res) => {
   } 
 });
 
-app.get("/urls.json", (req, res) => {
-  res.json(updatedDatabase);
-});
 
 
 app.get("/urls/:id", (req, res) => {
   
-  if(updatedDatabase[req.params.id]){
-    let templateVars = {
-      shortURL: req.params.id,
-      longURL: updatedDatabase[req.params.id].longURL,
-      user: users[req.session.user_id]
-    };
-    res.render("urls_show", templateVars);
+  if(req.session.user_id){
+
+    if(updatedDatabase[req.params.id]){
+      let templateVars = {
+        shortURL: req.params.id,
+        longURL: updatedDatabase[req.params.id].longURL,
+        user: users[req.session.user_id]
+      };
+      res.render("urls_show", templateVars);
+    }else{
+      let templateVars = {
+        user: users[req.session.user_id]
+      };
+      res.render("urls_show",templateVars);
+    }
+
   }else{
-    let templateVars = {
-      user: users[req.session.user_id]
-    };
-    res.render("urls_show",templateVars);
+    res.redirect('/login');
   }
-  
+
 });
 
 app.post("/urls/:id", (req, res) => {
@@ -134,18 +137,16 @@ app.get("/register", (req, res) => {
 app.post("/register", (req, res) => {
   if(req.body.email && req.body.password){
     for (let key in users) {
-      console.log("email:"+ users[key].email);
       if(users[key].email === req.body.email){
       res.status(400);
       res.send('Email already exist');
       return;
       }
     }
-   
+
     let userRandomID = generateRandomString(); 
     let hashPasswordValue = bcrypt.hashSync(req.body.password, 10);
     let newUser =  {id: userRandomID, email: req.body.email, password: hashPasswordValue};
-
     users[userRandomID] = newUser;
     req.session.user_id = userRandomID;
     res.redirect("/urls");
@@ -160,10 +161,7 @@ app.get("/login", (req, res) => {
   res.render('login');
 });
 
-app.listen(PORT, () => {
-  console.log('Example app listening on port ');
-}); 
-
+ 
 app.post("/login", (req, res) => {
 
   if(req.body.email && req.body.password){
@@ -205,7 +203,14 @@ app.get("/u/:id", (req, res) => {
     let url = updatedDatabase[req.params.id].longURL;
     res.redirect(url.toString());
   }else{
-    res.end("Redirect failed, Please check your short URL or format of Long URL add http/https/www in front");
+    res.end("Please check your short URL or format of Long URL add http/https/www in front");
   }
 });
 
+app.get("/urls.json", (req, res) => {
+  res.json(updatedDatabase);
+});
+
+app.listen(PORT, () => {
+  console.log('Example app listening on port ' + PORT);
+});
