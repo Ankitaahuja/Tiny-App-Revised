@@ -17,8 +17,8 @@ TinyApp is a full stack web application using Node. The app will allow users to 
 
 ## Screenshots
 
-![ScreenShot](https://raw.githubusercontent.com/Ankitaahuja/Tiny-App-Revised/blob/master/docs/Urls_Page.png)
+![ScreenShot](https://raw.githubusercontent.com/Ankitaahuja/Tiny-App-Revised/master/docs/Urls_Page.png)
 
-![ScreenShot](https://raw.githubusercontent.com/Ankitaahuja/Tiny-App-Revised/blob/master/docs/login_page.png)
+![ScreenShot](https://raw.githubusercontent.com/Ankitaahuja/Tiny-App-Revised/master/docs/login_page.png)
 
-![ScreenShot](https://raw.githubusercontent.com/Ankitaahuja/Tiny-App-Revised/blob/master/docs/new_page.png)
+![ScreenShot](https://raw.githubusercontent.com/Ankitaahuja/Tiny-App-Revised/master/docs/new_page.png)
