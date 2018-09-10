@@ -41,13 +41,13 @@ function generateRandomString() {
 
 
 let updatedDatabase = {
-  "b2xVn2" : { 
+  "b2xVb2" : { 
                 longURL: "http://www.lighthouselabs.ca",
                 user_id: "userRandomID" // hardcorded 
                 },
-  "9sm5xK": {
+  "9sd5xK": {
                longURL: "http://www.google.com",
-                user_id: "uasfvzzdf" // hardcorded
+                user_id: "user2RandomID" // hardcorded
             }
 };
 

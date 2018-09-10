@@ -19,5 +19,16 @@
   "devDependencies": {
     "nodemon": "^1.18.3"
   },
-  "description": ""
+  "description": "TinyApp is a full stack web application using Node. The app will allow users to shorten long URLs much like TinyURL.com and bit.ly do.",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ankitaahuja/Tiny-App-Revised.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ankitaahuja/Tiny-App-Revised/issues"
+  },
+  "homepage": "https://github.com/Ankitaahuja/Tiny-App-Revised#readme"
 }
